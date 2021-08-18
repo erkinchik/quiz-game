@@ -1,7 +1,7 @@
 <template>
   <Header class="header">
-    <div class="btn-block" @click="$router.push('/')"><q-btn class="full-width">Игра</q-btn></div>
-    <div class="btn-block" @click="$router.push(('/stat'))"><q-btn class="full-width">Статистика</q-btn></div>
+    <div class="btn-block" @click="$router.push('/').catch(err=>{})"><q-btn class="full-width">Игра</q-btn></div>
+    <div class="btn-block" @click="$router.push(('/stat')).catch(err=>{})"><q-btn class="full-width">Статистика</q-btn></div>
   </Header>
 </template>
 

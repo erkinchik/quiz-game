@@ -8,7 +8,7 @@
         v-model="name"
         class="input"
       />
-      <q-btn class="btn" label="Начать игру" @click="startGame"></q-btn>
+      <q-btn class="btn" label="Начать игру" @click="startGame"/>
     </div>
   </div>
 </template>
@@ -19,7 +19,7 @@ export default {
   data() {
     return {
       name: "",
-      // isGameStarted: false,
+
     };
   },
   computed: mapGetters(["isGameStarted"]),
@@ -39,9 +39,7 @@ export default {
   updated() {
     console.log(this.isGameStarted);
   },
-  mounted() {
-    // localStorage.setItem("gameIsStarted", f);
-  },
+
 };
 </script>
 

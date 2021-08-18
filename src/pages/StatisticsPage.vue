@@ -1,23 +1,36 @@
 <template>
   <div style="text-align: center">
-    <h3><strong>name:</strong> {{ this.getUserInfo.userName }}</h3>
-    <h3><b>all questions:</b> {{this.getUserInfo.questionsCount }}</h3>
-    <h3><b>all correct questions:</b> {{ this.getUserInfo.correctQuestions }}</h3>
-    <h3><b>all uncorrect questions:</b> {{ this.getUserInfo.uncorrectQuestions }}</h3>
-    <h3><b>points:</b> {{ this.getUserInfo.points }}</h3>
-
+    <h3><strong>Имя:</strong> {{ this.getUserInfo.userName }}</h3>
+    <h3><b>Общее кол-во вопросов:</b> {{ this.getUserInfo.questionsCount }}</h3>
+    <h3>
+      <b>Все правильные вопросы:</b> {{ this.getUserInfo.correctQuestions }}
+    </h3>
+    <h3>
+      <b>Все неправильные вопросы:</b> {{ this.getUserInfo.uncorrectQuestions }}
+    </h3>
+    <h3><b>Очки:</b> {{ points }}</h3>
+    <q-btn label="Завершить игру!" @click="endGame"></q-btn>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 export default {
-  data(){
+  data() {
     return {
-      userName:localStorage.userName
-    }
+      points: localStorage.points || 0,
+    };
   },
   computed: mapGetters(["getUserInfo"]),
+  methods: {
+    endGame() {
+      this.$router.push("/");
+
+      localStorage.removeItem("gameIsStarted");
+
+      location.reload();
+    },
+  },
 };
 </script>
 
