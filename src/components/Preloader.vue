@@ -1,7 +1,7 @@
 <template>
   <div id="loading-mask">
     <div class="preloader">
-      <div class="c-three-dots-loader"></div>
+      <div class="c-three-dots-loader"/>
     </div>
   </div>
 </template>

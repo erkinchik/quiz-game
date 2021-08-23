@@ -19,26 +19,22 @@ export default {
   data() {
     return {
       name: "",
-
     };
   },
   computed: mapGetters(["isGameStarted"]),
   methods: {
-    ...mapMutations(["toggleGame", "changeName"]),
+    ...mapMutations(["toggleGame", "changeName","checkUser"]),
     startGame() {
       if (this.name.length) {
-        // this.isGameStarted = !this.isGameStarted;
         this.toggleGame();
+        this.checkUser(this.name)
         this.changeName(this.name);
         localStorage.setItem("gameIsStarted", true);
         localStorage.setItem("userName", this.name)
-        // localStorage.setItem("userName", this.name)
       }
     },
   },
-  updated() {
-    console.log(this.isGameStarted);
-  },
+
 
 };
 </script>

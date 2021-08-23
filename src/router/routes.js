@@ -1,11 +1,17 @@
 const routes = [
   {
     path: "/",
-    component: () => import("pages/GamePage.vue"),
-  },
-  {
-    path: "/stat",
-    component: () => import("pages/StatisticsPage.vue"),
+    component: () => import("layouts/GamePage.vue"),
+    children: [
+      {
+        path: "",
+        component: () => import("../pages/questionsPage"),
+      },
+      {
+        path: "/stat",
+        component: () => import("pages/StatisticsPage.vue"),
+      },
+    ],
   },
 
   {

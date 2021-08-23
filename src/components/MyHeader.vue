@@ -1,8 +1,8 @@
 <template>
-  <Header class="header">
+  <header class="header">
     <div class="btn-block" @click="$router.push('/').catch(err=>{})"><q-btn class="full-width">Игра</q-btn></div>
     <div class="btn-block" @click="$router.push(('/stat')).catch(err=>{})"><q-btn class="full-width">Статистика</q-btn></div>
-  </Header>
+  </header>
 </template>
 
 <script>

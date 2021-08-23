@@ -1,8 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import questions from "./modules/questions";
-import pointsBlockStore from "./modules/points-block-store";
-import startGame from "src/store/modules/startGame";
+import questions from "./modules/questionsState";
+import pointsBlockStore from "./modules/dialogState";
+import startGame from "src/store/modules/gameStartState";
 import statState from "src/store/modules/statState";
 
 // import example from './module-example'
