@@ -4,19 +4,17 @@ export default {
     changeName: (state, name) => (state.userInfo.userName = name),
 
     changeQuestionsStat(state, stringOfStatQuestion) {
-      // localStorage.setItem(
-      //   stringOfStatQuestion,
-      //   ++state.userInfo[stringOfStatQuestion]
-      // );
-      // console.log(state.user[stringOfStatQuestion]);
-      ++state.user[stringOfStatQuestion];
-      localStorage.setItem("user", JSON.stringify(state.user));
+      ++state.users[state.user][stringOfStatQuestion];
+      localStorage.setItem("users", JSON.stringify(state.users));
     },
 
     changePointsStat(state, { points, isCorrect }) {
-      isCorrect
-        ? localStorage.setItem("points", (state.userInfo.points += points))
-        : localStorage.setItem("points", (state.userInfo.points -= points));
+      if (isCorrect) {
+        state.users[state.user].points += points;
+      } else {
+        state.users[state.user].points -= points;
+      }
+      localStorage.setItem("users", JSON.stringify(state.users));
     },
 
     checkUser(state, name) {
@@ -25,35 +23,22 @@ export default {
       if (findUser() == undefined && !findUser()) {
         state.users.push({
           name,
+          id: state.users.length,
           correctQuestions: 0,
           uncorrectQuestions: 0,
           points: 0,
         });
-        state.user = findUser();
-        localStorage.setItem("user", JSON.stringify(state.user));
+        state.user = findUser().id;
       } else {
-        state.user = findUser();
-        localStorage.setItem("user", JSON.stringify(state.user));
+        state.user = findUser().id;
       }
       localStorage.setItem("users", JSON.stringify(state.users));
+      localStorage.setItem("userId", JSON.stringify(state.user));
     },
-    // decPoints(state, points) {
-    //   if (
-    //     localStorage.getItem("points") == points ||
-    //     localStorage.getItem("points") > points
-    //   ) {
-    //     localStorage.setItem("points", (state.userInfo.points -= points));
-    //   }
-    // },
-    // questionsAmount(state) {
-    //   state.userInfo.questionsCount =
-    //     state.userInfo.correctQuestions + state.userInfo.uncorrectQuestions;
-    //   localStorage.setItem("questionsAmount", state.userInfo.questionsCount);
-    // },
   },
   state: {
     users: JSON.parse(localStorage.getItem("users")) || [],
-    user: JSON.parse(localStorage.getItem("user")) || {},
+    user: JSON.parse(localStorage.getItem("userId")) || null,
     userInfo: {
       userName: localStorage.userName || "",
       // questionsCount:
